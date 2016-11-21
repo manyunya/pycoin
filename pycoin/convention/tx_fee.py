@@ -7,7 +7,7 @@ import json
 TX_FEE_PER_THOUSAND_BYTES = 10000
 
 
-def recommended_fee_for_tx(tx, recommanded_fee = True, default_fpk = "low_fee_per_kb", cap = 100000):
+def recommended_fee_for_tx(tx, recommanded_fee = False, default_fpk = "low_fee_per_kb", cap = 100000):
     """
     Return the recommended transaction fee in satoshis.
     This is a grossly simplified version of this function.
@@ -17,6 +17,9 @@ def recommended_fee_for_tx(tx, recommanded_fee = True, default_fpk = "low_fee_pe
       - update for bitcoind v0.90 new fee schedule
 
     default_fpk can be low_fee_per_kb, medium_fee_per_kb, high_fee_per_kb
+
+    cap defines the maximum fee per transaction (default 0.001 BTC)
+     this is to prevent high transaction fees due to spam attacks on the network
 
     """
     s = io.BytesIO()
